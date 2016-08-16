@@ -3,13 +3,25 @@ import path from 'path';
 
 import webpack from 'webpack';
 import webpackMidleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackConfig from '../webpack.config.dev';
 
 // define the app server
 const app = express();
 
-// Webapck setup
-app.use(webpackMidleware(webpack(webpackConfig)))
+// Create compiler to be use by webpackMidleware and
+// webpackHotMiddleware
+const compiler = webpack(webpackConfig)
+
+// Setup webpack to compile ES6
+app.use(webpackMidleware(compiler, {
+  hot: true,
+  publicPath: webpackConfig.output.publicPath,
+  noInfo: true
+}));
+
+// Setup webpack hot reload
+app.use(webpackHotMiddleware(compiler));
 
 // Define catch all route
 app.get('/*', (req,res) => {

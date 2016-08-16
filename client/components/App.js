@@ -1,7 +1,10 @@
 import React from 'react';
+import Greetings from './Greetings.js';
 
- export default () => {
-   return (
-     <h1>Hello from react</h1>
-   );
- }
+ export default React.createClass({
+   render() {
+     return (
+       <Greetings />
+     );
+   }
+ })
