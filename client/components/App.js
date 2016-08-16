@@ -1,10 +1,13 @@
 import React from 'react';
-import Greetings from './Greetings.js';
+import Navigation from './navigation.js';
 
  export default React.createClass({
    render() {
      return (
-       <Greetings />
+       <div className="container">
+         <Navigation />
+         { this.props.children }
+       </div>
      );
    }
  })
