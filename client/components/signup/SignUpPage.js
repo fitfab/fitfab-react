@@ -1,9 +1,10 @@
 import React from 'react';
+import SignUpForm from './SignUpForm.js';
 
 export default React.createClass({
   render() {
     return (
-      <h1>Sign Up Page</h1>
+      <SignUpForm />
     )
   }
 })
