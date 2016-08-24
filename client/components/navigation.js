@@ -5,7 +5,7 @@ export default React.createClass({
   render() {
     return(
       <div>
-        <Link to="/">fitfab</Link> | <Link to="/signup">Sign Up</Link>
+        <Link to="/">fitfab</Link> | <Link to="/products">Products</Link> | <Link to="/signup">Sign Up</Link>
       </div>
     )
   }

@@ -3,6 +3,10 @@ import axios from 'axios';
 
 export default React.createClass({
 
+  propTypes: {
+    userSignupRequest: React.PropTypes.func.isRequired
+  },
+
   getInitialState() {
     return {
       firstName: '',
@@ -22,7 +26,7 @@ export default React.createClass({
 
   handleSubmit(e) {
     e.preventDefault();
-    axios.post('/api/users', { user: this.state });
+    this.props.userSignupRequest(this.state);
   },
 
   render() {
