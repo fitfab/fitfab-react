@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 export default React.createClass({
 
@@ -21,7 +22,7 @@ export default React.createClass({
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
+    axios.post('/api/users', { user: this.state });
   },
 
   render() {
