@@ -9,7 +9,7 @@ import * as reducer from './reducer.js'
 
 export default {
   actions,
-  components,
+  products,
   constants,
   reducer
 }
