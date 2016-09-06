@@ -1,0 +1,41 @@
+import {
+    REQUEST_BEGIN,
+    REQUEST_SUCCESS,
+    REQUEST_FAILED
+} from './actionTypes.js';
+
+const initialState = {
+    errors: [],
+    isFetching: false,
+    fetchComplete: false,
+    products: [],
+}
+
+export default ( state=initialState, action ) => {
+    let newState;
+    switch(action.type) {
+        case REQUEST_BEGIN:
+            newState = { isFetching: true };
+            state = Object.assign({}, state, newState)
+            break;
+        case REQUEST_SUCCESS:
+            newState = {
+                isFetching: false,
+                products: action.payload.results
+            };
+            state = Object.assign({}, state, newState)
+            break;
+        case REQUEST_SUCCESS:
+            newState = {
+                isFetching: false,
+                errors: action.payload.errors
+            };
+            state = Object.assign({}, state, newState)
+            break;
+            default:
+            state = initialState;
+            break;
+    }
+
+    return state;
+}
