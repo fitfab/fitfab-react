@@ -1,10 +1,9 @@
 @import "../../styles/base/_var.less";
-h1 {
-  color: @darkPrimaryColor;
-}
+
 form {
   font-family: sans-serif;
-  color: @primaryTextColor;
+  color: @secondary;
+  font-size: 14px;
 
   div {
     margin: 0 0 20px 0;
@@ -17,17 +16,20 @@ form {
   }
   input {
     font-size: 16px;
-    background: @textPrimaryColor;
-    border: 1px solid @dividerColor;
-    padding: 10px 20px;
+    font-weight: 100;
+    color: @secondary;
+    background: @white;
+    border: 1px solid @secondary;
+    padding: 7px 15px;
     border-radius: 50px;
     outline: none;
   }
   input[type=submit] {
+    background: @primary;
     display: inline-block;
     text-align: center;
     &:hover {
-      background: @lightPrimaryColor;
+      background: @divider;
     }
   }
 }
