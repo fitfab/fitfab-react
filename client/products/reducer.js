@@ -8,23 +8,26 @@ const initialState = {
     errors: [],
     isFetching: false,
     fetchComplete: false,
-    products: [],
+    list: [],
 }
 
 export default ( state=initialState, action ) => {
     let newState;
     switch(action.type) {
+
         case REQUEST_BEGIN:
             newState = { isFetching: true };
             state = Object.assign({}, state, newState)
             break;
+
         case REQUEST_SUCCESS:
             newState = {
                 isFetching: false,
-                products: action.payload.results
+                list: action.payload.results
             };
             state = Object.assign({}, state, newState)
             break;
+
         case REQUEST_SUCCESS:
             newState = {
                 isFetching: false,
@@ -32,7 +35,8 @@ export default ( state=initialState, action ) => {
             };
             state = Object.assign({}, state, newState)
             break;
-            default:
+
+        default:
             state = initialState;
             break;
     }

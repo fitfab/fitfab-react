@@ -6,7 +6,6 @@ import Greetings from './components/Greetings.js';
 import SignUpPage from './components/signup/SignUpPage.js';
 import Products from './products';
 
-console.log('Products', Products)
 export default (
     <Route path="/" component={App}>
       <IndexRoute component={Greetings} />

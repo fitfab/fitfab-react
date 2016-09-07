@@ -12,7 +12,7 @@ import * as actionCreators from './actions.js';
  */
 function mapStateToProps(state) {
     return {
-        Products: state.ProductsReducer,
+        Products: state.Products,
     };
 }
 
