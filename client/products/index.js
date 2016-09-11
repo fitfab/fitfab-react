@@ -13,5 +13,3 @@ export default {
   constants,
   reducer
 }
-
-// TODO:  components will be a container

@@ -3,7 +3,7 @@ import React from 'react';
 export default React.createClass({
   render(){
     return (
-      <h2>Product Page Component</h2>
+      <h1>Product Page Component</h1>
     )
   }
 })

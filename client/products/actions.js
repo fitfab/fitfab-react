@@ -6,7 +6,7 @@ import {
 
 export const quickView = (id) => ({
   type: QUICK_VIEW,
-  payload: { id }
+  id
 })
 
 export const requestBegin = () =>  ({
