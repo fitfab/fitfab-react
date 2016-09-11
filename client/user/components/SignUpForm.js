@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 
 export default React.createClass({
 
@@ -32,7 +31,7 @@ export default React.createClass({
   render() {
     return(
       <form onSubmit={this.handleSubmit}>
-        <h1>Sign Up Page</h1>
+        <p>Please fill all input fields.</p>
         <div>
           <label>First Name: </label>
           <input

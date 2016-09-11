@@ -2,6 +2,7 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 import ProductsReducer from './products/reducer.js';
+import UserReducer from './user/reducer.js';
 
 // create a store that has redux-thunk middleware enabled
 const createStoreWidthMiddleware = applyMiddleware(
@@ -11,7 +12,8 @@ const createStoreWidthMiddleware = applyMiddleware(
 
 // Create store with the combinedReducer
 const combinedReducers = combineReducers({
-    Products: ProductsReducer
+    Products: ProductsReducer,
+    User: UserReducer
 });
 
 export default function configureStore() {
