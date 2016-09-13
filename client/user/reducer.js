@@ -35,10 +35,10 @@ export default (state, action ) => {
       state = Object.assign({}, state, nextState)
       break;
 
-    case REQUEST_SUCCESS:
+    case REQUEST_FAILED:
       nextState = {
           isFetching: false,
-          errors: action.payload.errors
+          errors: action.payload
       };
       state = Object.assign({}, state, nextState)
       break;

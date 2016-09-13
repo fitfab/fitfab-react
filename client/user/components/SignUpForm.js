@@ -3,7 +3,16 @@ import React from 'react';
 export default React.createClass({
 
   propTypes: {
-    userSignupRequest: React.PropTypes.func.isRequired
+
+    userActions: React.PropTypes.shape({
+      createUser: React.PropTypes.func.isRequired,
+      deleteUser: React.PropTypes.func.isRequired,
+      loginUser: React.PropTypes.func.isRequired,
+      logoutUser: React.PropTypes.func.isRequired,
+      updateUser: React.PropTypes.func.isRequired
+    })
+
+
   },
 
   getInitialState() {
@@ -25,7 +34,7 @@ export default React.createClass({
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.userSignupRequest(this.state);
+    this.props.userActions.createUser(this.state);
   },
 
   render() {

@@ -12,7 +12,7 @@ import * as actionCreators from './actions.js';
  */
 function mapStateToProps(state) {
     return {
-        User: state.User,
+        user: state.User,
     };
 }
 
@@ -41,7 +41,7 @@ function mapDispatchToProps(dispatch) {
   // and you don’t want to pass dispatch or
   // the Redux store to it.
     return {
-        UserActions: bindActionCreators(actionCreators, dispatch)
+        userActions: bindActionCreators(actionCreators, dispatch)
     };
 }
 
