@@ -8,6 +8,7 @@ import {
   UPDATE_USER,
   DELETE_USER,
   LOGIN_USER,
+  LOGOUT_USER,
   REQUEST_BEGIN,
   REQUEST_FAILED,
   REQUEST_SUCCESS
@@ -16,6 +17,23 @@ import {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
+
+
+
+export function verifyUser() {
+  return function(dispatch){
+    auth.onAuthStateChanged(user => {
+        if (user) {
+            console.log('user logedIn: ',user)
+            dispatch(requestSuccess(user));
+        } else {
+            console.log('user is not Logged in: ',user);
+            dispatch(requestFailed(null));
+
+        }
+    });
+  }
+}
 
 /**
  * 1st thunk creator using firebase as
@@ -35,14 +53,15 @@ export function createUser(user) {
         // that the API call is starting.
         dispatch(requestBegin());
 
-        auth.createUserWithEmailAndPassword(user.email, user.password)
-          .catch((error) => {
+        const promise = auth.createUserWithEmailAndPassword(user.email, user.password);
+        promise
+          .then( user => {
+            console.log('user', user)
+            dispatch(requestSuccess(user));
+          })
+          .catch( error => {
           // Handle Errors here.
-          // var errorCode = error.code;
-          // var errorMessage = error.message;
-          // ...
-          
-          dispatch(requestFailed(error))
+          dispatch(requestFailed(error));
         });
     };
 }
@@ -80,7 +99,7 @@ export function loginUser(email, password) {
 
 export function logoutUser(email, password) {
   return {
-    type: LOGIN_USER,
+    type: LOGOUT_USER,
     email,
     password
   }
@@ -97,5 +116,6 @@ function requestFailed(payload) {
 }
 
 function requestSuccess(payload) {
+    console.log('requestSuccess', payload)
     return { payload, type: REQUEST_SUCCESS };
 }

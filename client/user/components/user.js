@@ -7,10 +7,25 @@ require('./user.less');
 // not -- render logout button, signup form or login.
 
 export default React.createClass({
+
+  componentDidMount() {
+    this.props.userActions.verifyUser();
+  },
+  handleLogOut(event) {
+    event.preventDefault();
+    this.props.userActions.logoutUser();
+  },
+  renderLogout() {
+    if(this.props.user.credentials) {
+      console.log(this.props.user)
+      return (<a href="#" onClick={this.handleLogOut} >log out</a>);
+    }
+
+  },
   render() {
     return (
       <div>
-        <h1>User Area</h1>
+        <h1>User Area {this.renderLogout()}</h1>
         <SignUpForm { ...this.props } />
       </div>
     )

@@ -4,6 +4,8 @@ import {
   UPDATE_USER,
   DELETE_USER,
   LOGIN_USER,
+  LOGOUT_USER,
+  VERIFY_USER,
   REQUEST_BEGIN,
   REQUEST_SUCCESS,
   REQUEST_FAILED
@@ -13,7 +15,7 @@ const userInitialState = {
   errors: [],
   isFetching: false,
   fetchComplete: false,
-  user: null,
+  credentials: null,
   userLogedin: false,
 };
 
@@ -21,6 +23,15 @@ export default (state, action ) => {
   let nextState;
 
   switch( action.type ) {
+
+    case VERIFY_USER:
+      nextState = {
+          isFetching: false,
+          userLogedin: true,
+          credentials: action.payload
+      };
+      state = Object.assign({}, state, nextState)
+      break;
 
     case REQUEST_BEGIN:
       nextState = { isFetching: true };
@@ -30,7 +41,8 @@ export default (state, action ) => {
     case REQUEST_SUCCESS:
       nextState = {
           isFetching: false,
-          list: action.payload.results
+          userLogedin: true,
+          credentials: action.payload
       };
       state = Object.assign({}, state, nextState)
       break;
@@ -38,7 +50,8 @@ export default (state, action ) => {
     case REQUEST_FAILED:
       nextState = {
           isFetching: false,
-          errors: action.payload
+          errors: action.payload,
+          credentials: null
       };
       state = Object.assign({}, state, nextState)
       break;
@@ -64,6 +77,11 @@ export default (state, action ) => {
       break;
 
     case LOGIN_USER:
+      nextState = { isFetching:true };
+      state = Object.assign({}, state, nextState);
+      break;
+
+    case LOGOUT_USER:
       nextState = { isFetching:true };
       state = Object.assign({}, state, nextState);
       break;
