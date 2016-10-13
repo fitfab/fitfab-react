@@ -1,5 +1,6 @@
 import React from 'react';
 import SignUpForm from './SignUpForm.js';
+import UserProfile from './UserProfile.js';
 
 require('./user.less');
 // This component acts as the top dum level component
@@ -16,17 +17,20 @@ export default React.createClass({
     this.props.userActions.logoutUser();
   },
   renderLogout() {
+    let view = null;
     if(this.props.user.credentials) {
-      console.log(this.props.user)
-      return (<a href="#" onClick={this.handleLogOut} >log out</a>);
+      view = (<UserProfile {...this.props} handleLogOut={this.handleLogOut} />);
+    } else {
+      view = (<SignUpForm { ...this.props } />)
     }
-
+    return view;
   },
   render() {
     return (
       <div>
-        <h1>User Area {this.renderLogout()}</h1>
-        <SignUpForm { ...this.props } />
+        <h1>User Area</h1>
+        {this.renderLogout()}
+
       </div>
     )
   }

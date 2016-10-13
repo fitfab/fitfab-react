@@ -112,12 +112,6 @@ export default React.createClass({
             name="createUser"
             onClick={this.handleSubmit}
             />
-          <input
-            type="submit"
-            value="sign out"
-            name="logoutUser"
-            onClick={this.handleSubmit}
-            />
         </div>
 
       </form>
