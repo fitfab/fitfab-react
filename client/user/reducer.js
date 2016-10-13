@@ -40,6 +40,7 @@ export default (state, action ) => {
 
     case REQUEST_SUCCESS:
       nextState = {
+          error: null,
           isFetching: false,
           userLogedin: true,
           credentials: action.payload
@@ -82,7 +83,11 @@ export default (state, action ) => {
       break;
 
     case LOGOUT_USER:
-      nextState = { isFetching:true };
+      nextState = {
+        error: null,
+        isFetching:true,
+        credentials: action.payload
+      };
       state = Object.assign({}, state, nextState);
       break;
 

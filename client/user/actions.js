@@ -18,17 +18,34 @@ import {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
+export function loginUser(user) {
+  console.log('loginUser');
+  return function(dispatch){
+    dispatch(requestBegin());
+    auth.signInWithEmailAndPassword(user.email, user.password)
+  }
+}
 
+export function logoutUser(user) {
+  console.log('logoutUser');
+  return function(dispatch){
+    dispatch(requestBegin());
+
+    auth.signOut();
+  }
+}
 
 export function verifyUser() {
+
   return function(dispatch){
     auth.onAuthStateChanged(user => {
+        console.log('verifyUser')
         if (user) {
             console.log('user logedIn: ',user)
             dispatch(requestSuccess(user));
         } else {
             console.log('user is not Logged in: ',user);
-            dispatch(requestFailed(null));
+            dispatch(requestSuccess(user));
 
         }
     });
@@ -42,7 +59,7 @@ export function verifyUser() {
  * http://rackt.org/redux/docs/advanced/AsyncActions.html
  */
 export function createUser(user) {
-
+    console.log('createUser',user)
     // Thunk middleware knows how to handle functions.
     // It passes the dispatch method as an argument to the function,
     // thus making it able to dispatch actions itself.
@@ -53,12 +70,7 @@ export function createUser(user) {
         // that the API call is starting.
         dispatch(requestBegin());
 
-        const promise = auth.createUserWithEmailAndPassword(user.email, user.password);
-        promise
-          .then( user => {
-            console.log('user', user)
-            dispatch(requestSuccess(user));
-          })
+        auth.createUserWithEmailAndPassword(user.email, user.password)
           .catch( error => {
           // Handle Errors here.
           dispatch(requestFailed(error));
@@ -89,21 +101,12 @@ export function deleteUser(id) {
   }
 }
 
-export function loginUser(email, password) {
-  return {
-    type: LOGIN_USER,
-    email,
-    password
-  }
-}
-
-export function logoutUser(email, password) {
-  return {
-    type: LOGOUT_USER,
-    email,
-    password
-  }
-}
+// export function logoutUser(payload) {
+//   return {
+//     payload,
+//     type: LOGOUT_USER,
+//   }
+// }
 
 function requestBegin() {
     return {

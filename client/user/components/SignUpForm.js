@@ -11,8 +11,6 @@ export default React.createClass({
       logoutUser: React.PropTypes.func.isRequired,
       updateUser: React.PropTypes.func.isRequired
     })
-
-
   },
 
   getInitialState() {
@@ -34,12 +32,22 @@ export default React.createClass({
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.userActions.createUser(this.state);
+    const { name } = e.target;
+    console.log('input:', name, e.target, e.currentTarget);
+    this.props.userActions[name](this.state);
+  },
+
+  componentWillReceiveProps(nextProps){
+
+    if(nextProps.user.credentials == null){
+      console.log('componentWillReceiveProps: ',nextProps.user)
+      this.setState(this.getInitialState());
+    }
   },
 
   render() {
     return(
-      <form onSubmit={this.handleSubmit}>
+      <form>
         <p>Please fill all input fields.</p>
         <div>
           <label>First Name: </label>
@@ -94,7 +102,21 @@ export default React.createClass({
         <div>
           <input
             type="submit"
-            value="Save"
+            value="log in"
+            name="loginUser"
+            onClick={this.handleSubmit}
+            />
+          <input
+            type="submit"
+            value="sign up"
+            name="createUser"
+            onClick={this.handleSubmit}
+            />
+          <input
+            type="submit"
+            value="sign out"
+            name="logoutUser"
+            onClick={this.handleSubmit}
             />
         </div>
 
