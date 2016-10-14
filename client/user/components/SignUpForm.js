@@ -19,7 +19,8 @@ export default React.createClass({
       lastName: '',
       email: '',
       password: '',
-      passwordConfirm: ''
+      passwordConfirm: '',
+      errors: {}
     };
   },
 
@@ -32,14 +33,15 @@ export default React.createClass({
 
   handleSubmit(e) {
     e.preventDefault();
+    this.setState({ errors: {} })
     const { name } = e.target;
-    console.log('input:', name, e.target, e.currentTarget);
-    this.props.userActions[name](this.state);
+    // trigger action and handles errors
+    this.props.userActions[name](this.state)
   },
 
   componentWillReceiveProps(nextProps){
-
-    if(nextProps.user.credentials == null){
+    // login or signup went well reset form
+    if(nextProps.user.credentials !== null){
       console.log('componentWillReceiveProps: ',nextProps.user)
       this.setState(this.getInitialState());
     }

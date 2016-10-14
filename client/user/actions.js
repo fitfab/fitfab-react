@@ -19,7 +19,6 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
 export function loginUser(user) {
-  console.log('loginUser');
   return function(dispatch){
     dispatch(requestBegin());
     auth.signInWithEmailAndPassword(user.email, user.password)
@@ -27,10 +26,8 @@ export function loginUser(user) {
 }
 
 export function logoutUser(user) {
-  console.log('logoutUser');
   return function(dispatch){
     dispatch(requestBegin());
-
     auth.signOut();
   }
 }
@@ -41,10 +38,8 @@ export function verifyUser() {
     auth.onAuthStateChanged(user => {
         console.log('verifyUser')
         if (user) {
-            console.log('user logedIn: ',user)
             dispatch(requestSuccess(user));
         } else {
-            console.log('user is not Logged in: ',user);
             dispatch(requestSuccess(user));
 
         }
@@ -59,7 +54,6 @@ export function verifyUser() {
  * http://rackt.org/redux/docs/advanced/AsyncActions.html
  */
 export function createUser(user) {
-    console.log('createUser',user)
     // Thunk middleware knows how to handle functions.
     // It passes the dispatch method as an argument to the function,
     // thus making it able to dispatch actions itself.
@@ -119,6 +113,5 @@ function requestFailed(payload) {
 }
 
 function requestSuccess(payload) {
-    console.log('requestSuccess', payload)
     return { payload, type: REQUEST_SUCCESS };
 }

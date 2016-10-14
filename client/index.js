@@ -8,6 +8,7 @@ import configureStore from './configureStore.js'
 import routes from './routes.js';
 // get layout styles
 require('./styles/layout.less');
+
 // create store
 const store = configureStore();
 

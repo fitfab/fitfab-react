@@ -40,7 +40,7 @@ export default (state, action ) => {
 
     case REQUEST_SUCCESS:
       nextState = {
-          error: null,
+          errors: null,
           isFetching: false,
           userLogedin: true,
           credentials: action.payload
@@ -84,7 +84,7 @@ export default (state, action ) => {
 
     case LOGOUT_USER:
       nextState = {
-        error: null,
+        errors: null,
         isFetching:true,
         credentials: action.payload
       };
