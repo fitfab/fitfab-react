@@ -1,13 +1,22 @@
 import express from 'express';
 import path from 'path';
+import bodyParser from 'body-parser';
 
 import webpack from 'webpack';
 import webpackMidleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackConfig from '../webpack.config.dev';
 
+import users from './routes/users';
+
 // define the app server
 const app = express();
+
+// using body parser for the API 
+app.use(bodyParser.json());
+
+// defines api routes for users
+app.use('/api/users', users);
 
 // Create compiler to be use by webpackMidleware and
 // webpackHotMiddleware

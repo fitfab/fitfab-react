@@ -25,6 +25,16 @@ export default React.createClass({
     };
   },
 
+  showError(error) {
+    console.log(error)
+    if (!error) {
+      return null
+    }
+    return (
+      <p className="input-error">{error}</p>
+    )
+  },
+
   handleChange(e) {
     let { name, value } = e.target;
     this.setState({
@@ -34,10 +44,11 @@ export default React.createClass({
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.userActions.createUser(this.state);
+    this.props.userActions.createUser(this.state)
   },
 
   render() {
+    const { errors } = this.props.user;
     return(
       <form onSubmit={this.handleSubmit}>
         <p>Please fill all input fields.</p>
@@ -49,6 +60,7 @@ export default React.createClass({
             value={this.state.firstName}
             onChange={this.handleChange}
             />
+          { this.showError(errors.lastName) }
         </div>
 
         <div>
@@ -59,6 +71,7 @@ export default React.createClass({
             value={this.state.lastName}
             onChange={this.handleChange}
             />
+          { this.showError(errors.lastName) }
         </div>
 
         <div>
@@ -69,6 +82,7 @@ export default React.createClass({
             value={this.state.email}
             onChange={this.handleChange}
             />
+          { this.showError(errors.email) }
         </div>
 
         <div>
@@ -79,6 +93,7 @@ export default React.createClass({
             value={this.state.password}
             onChange={this.handleChange}
             />
+          { this.showError(errors.password) }
         </div>
 
         <div>
@@ -89,6 +104,7 @@ export default React.createClass({
             value={this.state.passwordConfirm}
             onChange={this.handleChange}
             />
+          { this.showError(errors.passwordConfirm) }
         </div>
 
         <div>

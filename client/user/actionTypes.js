@@ -7,3 +7,5 @@ export const LOGIN_USER = 'user/LOGIN_USER';
 export const REQUEST_BEGIN = 'user/REQUEST_BEGIN';
 export const REQUEST_SUCCESS = 'user/REQUEST_SUCCESS';
 export const REQUEST_FAILED = 'user/REQUEST_FAILED';
+
+export const endpoint = '/api/users';

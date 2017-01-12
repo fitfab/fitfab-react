@@ -10,7 +10,7 @@ import {
 } from './actionTypes.js';
 
 const userInitialState = {
-  errors: [],
+  errors: {},
   isFetching: false,
   fetchComplete: false,
   user: null,
@@ -30,7 +30,8 @@ export default (state, action ) => {
     case REQUEST_SUCCESS:
       nextState = {
           isFetching: false,
-          list: action.payload.results
+          errors: {},
+          user: action.payload.data
       };
       state = Object.assign({}, state, nextState)
       break;
@@ -38,7 +39,7 @@ export default (state, action ) => {
     case REQUEST_FAILED:
       nextState = {
           isFetching: false,
-          errors: action.payload
+          errors: action.payload.response.data
       };
       state = Object.assign({}, state, nextState)
       break;

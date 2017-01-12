@@ -10,12 +10,13 @@ import {
   LOGIN_USER,
   REQUEST_BEGIN,
   REQUEST_FAILED,
-  REQUEST_SUCCESS
+  REQUEST_SUCCESS,
+  endpoint,
 } from './actionTypes.js';
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
+// firebase.initializeApp(firebaseConfig);
+// const auth = firebase.auth();
 
 /**
  * 1st thunk creator using firebase as
@@ -29,22 +30,26 @@ export function createUser(user) {
     // It passes the dispatch method as an argument to the function,
     // thus making it able to dispatch actions itself.
 
-    return function (dispatch) {
-
-        // First dispatch: the app state is updated to inform
-        // that the API call is starting.
+    return (dispatch) => {
+      // 1st dispatch: the app state is updated to inform
+      // that the API call is starting.
         dispatch(requestBegin());
 
-        auth.createUserWithEmailAndPassword(user.email, user.password)
-          .catch((error) => {
-          // Handle Errors here.
-          // var errorCode = error.code;
-          // var errorMessage = error.message;
-          // ...
-          
-          dispatch(requestFailed(error))
+        // 2nd Ajax: call to the api
+        axios.post(endpoint, user, { timeout: 3000 })
+        .then((response) => {
+          console.log('requestSuccess: ',response);
+            // Notify that we have received the data
+            dispatch(requestSuccess(response));
+
+        }).catch((response) => {
+            console.log('requestFailed: ',response);
+            // Notify of any failure from the request
+            dispatch(requestFailed(response));
+
         });
     };
+
 }
 
 export function retrieveUser(id) {
