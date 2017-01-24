@@ -1,54 +1,65 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+import validateUser from './../../../shared/validateUser.js';
 
 export default React.createClass({
+    displayName: 'SignUpForm',
+    propTypes: {
+        user: PropTypes.object,
+        userActions: PropTypes.shape({
+            createUser: PropTypes.func.isRequired,
+            deleteUser: PropTypes.func.isRequired,
+            loginUser: PropTypes.func.isRequired,
+            logoutUser: PropTypes.func.isRequired,
+            updateUser: PropTypes.func.isRequired
+        })
+    },
 
-  propTypes: {
+    getInitialState() {
+        return {
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            passwordConfirm: '',
+            errors: {}
+        };
+    },
 
-    userActions: React.PropTypes.shape({
-      createUser: React.PropTypes.func.isRequired,
-      deleteUser: React.PropTypes.func.isRequired,
-      loginUser: React.PropTypes.func.isRequired,
-      logoutUser: React.PropTypes.func.isRequired,
-      updateUser: React.PropTypes.func.isRequired
-    })
+    showError(error) {
+        //console.log(error)
+        if (!error) {
+            return null;
+        }
+        return (
+            <p className="input-error">{error}</p>
+        );
+    },
 
+    handleChange(e) {
+        let { name, value } = e.target;
+        this.setState({
+            [name]: value
+        });
+    },
 
-  },
+    isValid() {
+        const { errors, isValid } = validateUser(this.state);
+        if(!isValid){
+            this.setState({ errors })
+        }
+        return isValid;
+    },
 
-  getInitialState() {
-    return {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      passwordConfirm: ''
-    };
-  },
-
-  showError(error) {
-    console.log(error)
-    if (!error) {
-      return null
-    }
-    return (
-      <p className="input-error">{error}</p>
-    )
-  },
-
-  handleChange(e) {
-    let { name, value } = e.target;
-    this.setState({
-      [name]: value
-    })
-  },
-
-  handleSubmit(e) {
-    e.preventDefault();
-    this.props.userActions.createUser(this.state)
-  },
+    handleSubmit(e) {
+        e.preventDefault();
+        if (this.isValid()) {
+            this.setState({ errors: {} })
+            this.props.userActions.createUser(this.state);
+        }
+    },
 
   render() {
-    const { errors } = this.props.user;
+    const { errors } = this.state;
     return(
       <form onSubmit={this.handleSubmit}>
         <p>Please fill all input fields.</p>
@@ -60,7 +71,7 @@ export default React.createClass({
             value={this.state.firstName}
             onChange={this.handleChange}
             />
-          { this.showError(errors.lastName) }
+        { this.showError(errors && errors.firstName) }
         </div>
 
         <div>
@@ -71,7 +82,7 @@ export default React.createClass({
             value={this.state.lastName}
             onChange={this.handleChange}
             />
-          { this.showError(errors.lastName) }
+          { this.showError(errors && errors.lastName) }
         </div>
 
         <div>
@@ -82,7 +93,7 @@ export default React.createClass({
             value={this.state.email}
             onChange={this.handleChange}
             />
-          { this.showError(errors.email) }
+          { this.showError(errors && errors.email) }
         </div>
 
         <div>
@@ -93,7 +104,7 @@ export default React.createClass({
             value={this.state.password}
             onChange={this.handleChange}
             />
-          { this.showError(errors.password) }
+          { this.showError(errors && errors.password) }
         </div>
 
         <div>
@@ -104,7 +115,7 @@ export default React.createClass({
             value={this.state.passwordConfirm}
             onChange={this.handleChange}
             />
-          { this.showError(errors.passwordConfirm) }
+          { this.showError(errors && errors.passwordConfirm) }
         </div>
 
         <div>
@@ -117,4 +128,4 @@ export default React.createClass({
       </form>
     );
   }
-})
+});

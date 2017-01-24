@@ -73,6 +73,6 @@ export default (state, action ) => {
       state = userInitialState;
       break;
 
-  };
+  }
   return state;
 }

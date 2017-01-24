@@ -1,3 +1,4 @@
+/*eslint no-console: ["error", { allow: ["warn", "error", "log"] }] */
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
@@ -12,7 +13,7 @@ import users from './routes/users';
 // define the app server
 const app = express();
 
-// using body parser for the API 
+// using body parser for the API
 app.use(bodyParser.json());
 
 // defines api routes for users

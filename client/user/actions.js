@@ -43,7 +43,7 @@ export function createUser(user) {
             dispatch(requestSuccess(response));
 
         }).catch((response) => {
-            console.log('requestFailed: ',response);
+            console.log('requestFailed: ',response.toString());
             // Notify of any failure from the request
             dispatch(requestFailed(response));
 

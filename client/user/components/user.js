@@ -7,12 +7,17 @@ require('./user.less');
 // not -- render logout button, signup form or login.
 
 export default React.createClass({
-  render() {
-    return (
-      <div>
-        <h1>User Area</h1>
-        <SignUpForm { ...this.props } />
-      </div>
-    )
-  }
-})
+    displayName: 'User',
+    componentDidMount() {
+
+    },
+
+    render() {
+        return (
+            <div>
+                <h1>User Area</h1>
+                <SignUpForm { ...this.props } />
+            </div>
+        );
+    }
+});

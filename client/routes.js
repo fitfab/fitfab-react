@@ -8,8 +8,8 @@ import Products from './products';
 
 export default (
     <Route path="/" component={App}>
-      <IndexRoute component={Greetings} />
-      <Route path="/signup" component={User.UserContainer} />
-      <Route path="/products" component={Products.ProductContainer} />
+        <IndexRoute component={Greetings} />
+        <Route path="/signup" component={User.UserContainer} />
+        <Route path="/products" component={Products.ProductContainer} />
     </Route>
 )

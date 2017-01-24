@@ -1,7 +1,8 @@
 import React from 'react';
 export default React.createClass({
+    displayName: 'profile',
     render() {
-        const { firstName, lastName, aboutMe, ability, background } = this.props;
+        const { firstName, lastName, ability} = this.props;
         return(
             <div className="grid grid--4th">
                 <div className="profile">
@@ -9,6 +10,6 @@ export default React.createClass({
                     <p>{ability}</p>
                 </div>
             </div>
-        )
+        );
     }
-})
+});
