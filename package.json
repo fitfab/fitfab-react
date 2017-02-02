@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon --watch server --exec babel-node -- server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "./node_modules/.bin/eslint **/*.js"
+    "lint": "eslint **/*.js"
   },
   "keywords": [],
   "author": "Miguel Julio <miguel.julio.developer@gmail.com> (http://fitfab.com/)",
@@ -31,10 +31,11 @@
   },
   "dependencies": {
     "axios": "0.13.1",
+    "bcryptjs": "2.4.0",
     "body-parser": "1.15.2",
     "express": "4.14.0",
-    "firebase": "^3.4.0",
     "lodash": "4.17.4",
+    "mongoose": "4.8.0",
     "react": "15.3.0",
     "react-dom": "15.3.0",
     "react-redux": "4.4.5",
