@@ -6,10 +6,17 @@ const router = express.Router();
 
 router.post('/', (req, res) => {
     const { errors, isValid } = validateUser(req.body);
+    const results = {
+        errors: null,
+        user: null
+    };
 
     if (!isValid) {
-        res.status(400).json(errors);
+        results.errors = errors;
+        return res.status(400).json(results);
     }
+    
+    // create a new instance of the user (momgoose)
     const newUser = new User({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
@@ -17,9 +24,11 @@ router.post('/', (req, res) => {
         password: req.body.password
     });
 
+    // save user into the DB
     newUser.createUser((err, user) => {
         if (err) throw err;
-        res.status(200).json(user);
+        results.user = user;
+        res.status(200).json(results);
     })
 
 })

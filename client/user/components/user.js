@@ -1,5 +1,6 @@
 import React from 'react';
 import SignUpForm from './SignUpForm.js';
+import UserDetail from './UserDeatil.js';
 
 require('./user.less');
 // This component acts as the top dum level component
@@ -13,10 +14,12 @@ export default React.createClass({
     },
 
     render() {
+        console.log('!!!this.props.user: ', this.props.user)
+        const { user } = this.props;
         return (
             <div>
                 <h1>User Area</h1>
-                <SignUpForm { ...this.props } />
+                { user.user ? <UserDetail { ...user} /> : <SignUpForm { ...this.props } /> }
             </div>
         );
     }

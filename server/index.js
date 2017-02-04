@@ -59,7 +59,8 @@ app.get('/*', (req,res) => {
 
 
 
-// Wait for the database connection to establish, then start the app.
+// Wait for the database connection to establish,
+// then start the app.
 conn.once('open', () => {
     console.log('Connect to the mLab');
     // Listen in port 3000

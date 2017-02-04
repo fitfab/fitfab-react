@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { cleanUser } from './../constants.js';
 import validateUser from './../../../shared/validateUser.js';
 
 export default React.createClass({
@@ -15,14 +16,21 @@ export default React.createClass({
     },
 
     getInitialState() {
-        return {
-            firstName: '',
-            lastName: '',
-            email: '',
-            password: '',
-            passwordConfirm: '',
-            errors: {}
-        };
+        return cleanUser;
+    },
+
+    componentWillReceiveProps(nextProps) {
+        let errors = {};
+        if (nextProps.user.errors) {
+            errors = nextProps.user.errors;
+            this.setState({ errors });
+            return;
+        }
+        this.setState({ errors });
+
+        if (nextProps.user.user._id) {
+            this.setState(cleanUser)
+        }
     },
 
     showError(error) {

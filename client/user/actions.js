@@ -30,13 +30,13 @@ export function createUser(user) {
 
         //2nd Ajax: call to the api
         axios.post(endpoint, user, { timeout: 3000 })
-        .then((response) => {
+        .then((json) => {
             // Notify that we have received the data
-            dispatch(requestSuccess(response));
+            dispatch(requestSuccess(json));
 
-        }).catch((response) => {
+        }).catch((json) => {
             // Notify of any failure from the request
-            dispatch(requestFailed(response));
+            dispatch(requestFailed(json));
 
         });
 
