@@ -1,16 +1,60 @@
-@import "./../../styles/base/_var.less";
+@import "./../../styles/base/_palette.less";
 .members-container {
-    display: flex;
+    // display: flex;
     overflow-x: auto;
-    .profile {
+    box-sizing: border-box;
+
+    .prev-page {
+        display: block;
+    }
+
+    .block {
         box-sizing: border-box;
-        padding: 20px;
-        background-color: #638190;
-        color: @white;
+        padding: 5px;
+        display: block;
+        float: left;
+        width: 25%;
+        height: 200px;
+        overflow: hidden;
+        &:nth-of-type(1) {
+            height: 400px;
+            .profile {
+
+                color: @primaryTextColor;
+            }
+        }
+        &:nth-of-type(3),
+        &:nth-of-type(4) {
+            width: 50%;
+
+            .profile {
+                color: @accentColor;
+            }
+        }
+        &:nth-of-type(7) {
+            width: 50%;
+            .profile {
+
+                color: @darkPrimaryColor;
+            }
+        }
+    }
+
+    .profile {
+        position: relative;
+        border: 1px solid @dividerColor;
+        color: @secondaryTextColor;
+        box-sizing: border-box;
         height: 100%;
-        // box-shadow: inset 0 0 100px @secondary;
-        &--brand {
-            background: @hbcBlue;
+        padding: 20px;
+        z-index: 10;
+        border-radius: 10px;
+        overflow: hidden;
+        h2 {
+            margin-top: 0;
+            letter-spacing: 5px;
+            word-spacing: 3px;
+            font-variant-caps: all-petite-caps;
         }
     }
 }

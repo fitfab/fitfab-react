@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import SignUpForm from './SignUpForm.js';
 import UserDetail from './UserDeatil.js';
 
@@ -9,12 +9,16 @@ require('./user.less');
 
 export default React.createClass({
     displayName: 'User',
+
+    propTypes: {
+        user: PropTypes.object
+    },
+
     componentDidMount() {
 
     },
 
     render() {
-        console.log('!!!this.props.user: ', this.props.user)
         const { user } = this.props;
         return (
             <div>

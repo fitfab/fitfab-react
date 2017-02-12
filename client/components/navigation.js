@@ -4,11 +4,17 @@ import { Link } from 'react-router';
 export default React.createClass({
     displayName: 'navigation',
     render() {
+        console.log(this.props)
         return(
             <div className="top-navigation">
-                <Link to="/">fitfab</Link>
-                <Link to="/products">Products</Link>
-                <Link to="/signup">Sign Up</Link>
+                <Link onlyActiveOnIndex activeClassName="top-navigation__active" to="/">fitfab</Link>
+                <Link
+                    activeClassName="top-navigation__active"
+                    to={{
+                        pathname: '/products',
+                        query: { prevPage: window.location.href}
+                    }}>Products</Link>
+                <Link activeClassName="top-navigation__active" to="/signup">Sign Up</Link>
             </div>
         )
     }

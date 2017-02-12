@@ -16,7 +16,7 @@ export default function validateUser(data) {
     errors.email = 'This field is required.'
   }
 
-  if (!Validator.isEmail(data.email)) {
+  if (!Validator.isEmpty(data.email) && !Validator.isEmail(data.email)) {
     errors.email = 'Email is invalid';
   }
 

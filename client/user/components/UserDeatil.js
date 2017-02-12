@@ -10,7 +10,7 @@ export default React.createClass({
         const { user } = this.props;
         return (
             <ul className="user-detail">
-                <li>
+                <li id={user._id}>
                     <span className="user-detail__label">Member:</span> {user.firstName} {user.lastName}
                 </li>
                 <li><span className="user-detail__label">Email:</span> {user.email}</li>

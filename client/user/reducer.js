@@ -1,4 +1,5 @@
 import {
+    EDIT_USER,
     RETRIEVE_USER,
     UPDATE_USER,
     DELETE_USER,
@@ -18,60 +19,68 @@ const userInitialState = {
 };
 
 export default (state, action ) => {
-  let nextState;
+    let nextState;
 
-  switch( action.type ) {
+    switch( action.type ) {
 
-    case REQUEST_BEGIN:
-      nextState = { isFetching: true };
-      state = Object.assign({}, state, nextState)
-      break;
+        case EDIT_USER:
+            nextState = {
+                editUser: true,
+                id: action.id
+            };
+            state = Object.assign({}, state, nextState)
+            break;
 
-    case REQUEST_SUCCESS:
-        nextState = {
-            isFetching: false,
-            fetchComplete: true,
-            fetchFailed: false,
-            errors: null,
-            user: action.payload.data.user
-        };
-        state = Object.assign({}, state, nextState)
-        break;
+        case REQUEST_BEGIN:
+            nextState = { isFetching: true };
+            state = Object.assign({}, state, nextState)
+            break;
 
-    case REQUEST_FAILED:
-        nextState = {
-            isFetching: false,
-            fetchComplete: false,
-            fetchFailed: true,
-            errors: action.payload.response.data.errors
-        };
-        state = Object.assign({}, state, nextState)
-        break;
+        case REQUEST_SUCCESS:
+            nextState = {
+                isFetching: false,
+                fetchComplete: true,
+                fetchFailed: false,
+                errors: null,
+                user: action.payload.data.user
+            };
+            state = Object.assign({}, state, nextState)
+            break;
 
-    case RETRIEVE_USER:
-        nextState = { isFetching:true };
-        state = Object.assign({}, state, nextState);
-        break;
+        case REQUEST_FAILED:
+            nextState = {
+                isFetching: false,
+                fetchComplete: false,
+                fetchFailed: true,
+                errors: action.payload.response.data.errors
+            };
+            state = Object.assign({}, state, nextState)
+            break;
 
-    case UPDATE_USER:
-        nextState = { isFetching:true };
-        state = Object.assign({}, state, nextState);
-        break;
+        case RETRIEVE_USER:
+            nextState = { isFetching:true };
+            state = Object.assign({}, state, nextState);
+            break;
 
-    case DELETE_USER:
-        nextState = { isFetching:true };
-        state = Object.assign({}, state, nextState);
-        break;
+        case UPDATE_USER:
+            nextState = { isFetching:true };
+            state = Object.assign({}, state, nextState);
+            break;
 
-    case LOGIN_USER:
-        nextState = { isFetching:true };
-        state = Object.assign({}, state, nextState);
-        break;
+        case DELETE_USER:
+            nextState = { isFetching:true };
+            state = Object.assign({}, state, nextState);
+            break;
 
-    default:
-      state = userInitialState;
-      break;
+        case LOGIN_USER:
+            nextState = { isFetching:true };
+            state = Object.assign({}, state, nextState);
+            break;
 
-  }
-  return state;
+        default:
+            state = userInitialState;
+            break;
+
+    }
+    return state;
 }

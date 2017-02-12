@@ -39,7 +39,7 @@ export default React.createClass({
             return null;
         }
         return (
-            <p className="input-error">{error}</p>
+            <span className="input-error">{error}</span>
         );
     },
 
@@ -72,64 +72,69 @@ export default React.createClass({
       <form onSubmit={this.handleSubmit}>
         <p>Please fill all input fields.</p>
         <div>
-          <label>First Name: </label>
+          <label>{ this.showError(errors && errors.firstName) }</label>
           <input
+            placeholder="First Name:"
             type="text"
             name="firstName"
             value={this.state.firstName}
             onChange={this.handleChange}
             />
-        { this.showError(errors && errors.firstName) }
+
         </div>
 
         <div>
-          <label>Last Name: </label>
+          <label>{ this.showError(errors && errors.lastName) }</label>
           <input
+            placeholder="Last Name:"
             type="text"
             name="lastName"
             value={this.state.lastName}
             onChange={this.handleChange}
             />
-          { this.showError(errors && errors.lastName) }
+
         </div>
 
         <div>
-          <label>User Email: </label>
+          <label>{ this.showError(errors && errors.email) }</label>
           <input
+            placeholder="User Email:"
             type="text"
             name="email"
             value={this.state.email}
             onChange={this.handleChange}
             />
-          { this.showError(errors && errors.email) }
+
         </div>
 
         <div>
-          <label>User PassWord: </label>
+          <label>{ this.showError(errors && errors.password) }</label>
           <input
+            placeholder="User PassWord:"
             type="password"
             name="password"
             value={this.state.password}
             onChange={this.handleChange}
             />
-          { this.showError(errors && errors.password) }
+
         </div>
 
         <div>
-          <label>Confirm Password: </label>
+          <label>{ this.showError(errors && errors.passwordConfirm) }</label>
           <input
+            placeholder="Confirm Password:"
             type="password"
             name="passwordConfirm"
             value={this.state.passwordConfirm}
             onChange={this.handleChange}
             />
-          { this.showError(errors && errors.passwordConfirm) }
+
         </div>
 
         <div>
           <input
             type="submit"
-            value="Save"
+            value="Create Account"
             />
         </div>
 

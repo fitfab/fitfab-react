@@ -1,43 +1,74 @@
-@import "../../styles/base/_var.less";
+@import "../../styles/base/_palette.less";
 
 form {
   font-family: sans-serif;
-  color: @secondary;
+  color: @secondaryTextColor;
   font-size: 14px;
+  width: 50%;
+  margin: 0 auto;
 
   div {
-    margin: 0 0 20px 0;
+    margin: 15px 0 0 0;
     padding: 5px 0;
   }
 
   label {
-    display: inline-block;
-    min-width: 150px;
+    display: block;
+    margin: 0 0 5px 12px;
+    position: relative;
   }
 
   input {
     font-size: 16px;
     font-weight: 100;
-    color: @secondary;
-    background: @white;
-    border: 1px solid @secondary;
+    color: @secondaryTextColor;
+    background: #fff;
+    border: 1px solid @dividerColor;
     padding: 7px 15px;
     border-radius: 50px;
     outline: none;
+    box-sizing: border-box;
+    width: 100%;
+    &:focus {
+        border: 1px solid @darkPrimaryColor;
+    }
   }
 
   input[type=submit] {
-    background: @primary;
+    background: @accentColor;
+    color: @textPrimaryColor;
     display: inline-block;
     text-align: center;
+    border: none;
     &:hover {
-      background: @divider;
-      color: @white;
+      background: @primaryColor;
     }
   }
 
   .input-error {
-    color: red;
+    background-color: @textPrimaryColor;
+    color: @errorColor;
+    padding: 5px 10px;
+    display: inline-block;
+    margin: 0;
+    position: absolute;
+    bottom: -5px;
+    right: 20px;
+    border-radius: 15px;
+    // border: 1px solid @dividerColor;
+    &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: -5px;
+        left: 20px;
+        border-bottom: 1px solid @dividerColor;
+        border-right: 1px solid @dividerColor;
+        background-color: @textPrimaryColor;
+        width: 7px;
+        height: 7px;
+        transform: rotate(45deg);
+    }
   }
 }
 
