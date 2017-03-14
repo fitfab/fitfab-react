@@ -70,7 +70,7 @@ export default React.createClass({
     const { errors } = this.state;
     return(
       <form onSubmit={this.handleSubmit}>
-        <p>Please fill all input fields.</p>
+        <h2>Please fill all input fields.</h2>
         <div>
           <label>{ this.showError(errors && errors.firstName) }</label>
           <input

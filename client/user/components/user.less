@@ -1,69 +1,87 @@
+@import "../../styles/base/_var.less";
 @import "../../styles/base/_palette.less";
 
 form {
-  font-family: sans-serif;
-  color: @secondaryTextColor;
-  font-size: 14px;
-  width: 50%;
-  margin: 0 auto;
-
-  div {
-    margin: 15px 0 0 0;
-    padding: 5px 0;
-  }
-
-  label {
-    display: block;
-    margin: 0 0 5px 12px;
-    position: relative;
-  }
-
-  input {
-    font-size: 16px;
-    font-weight: 100;
+    font-family: sans-serif;
     color: @secondaryTextColor;
-    background: #fff;
+    font-size: 14px;
+    width: 40%;
+    margin: 0 auto;
+    padding: 20px;
     border: 1px solid @dividerColor;
-    padding: 7px 15px;
-    border-radius: 50px;
-    outline: none;
-    box-sizing: border-box;
-    width: 100%;
-    &:focus {
-        border: 1px solid @darkPrimaryColor;
+    border-radius: 10px;
+    @media @smartphones {
+        width: 75%;
     }
-  }
 
-  input[type=submit] {
-    background: @accentColor;
-    color: @textPrimaryColor;
-    display: inline-block;
-    text-align: center;
-    border: none;
-    &:hover {
-      background: @primaryColor;
+    h2 {
+        margin: 0;
+        padding: 0 0 20px 0;
     }
-  }
+
+    div {
+        margin: 15px 0 0 0;
+        padding: 5px 0;
+    }
+
+    label {
+        display: block;
+        margin: 0 0 5px 12px;
+        position: relative;
+    }
+
+    input {
+        font-size: 16px;
+        font-weight: 100;
+        color: @secondaryTextColor;
+        background: #fff;
+        border: 1px solid @dividerColor;
+        padding: 7px 15px;
+        border-radius: 50px;
+        outline: none;
+        box-sizing: border-box;
+        width: 100%;
+
+        &:focus {
+            border: 1px solid @darkPrimaryColor;
+        }
+    }
+
+    input[type=submit] {
+        background: @primaryColor;
+        color: @textPrimaryColor;
+        cursor: pointer;
+        border: 1px solid @darkPrimaryColor;
+        display: inline-block;
+        text-align: center;
+        width: auto;
+
+        &:hover {
+            background: @darkPrimaryColor;
+        }
+    }
 
   .input-error {
     background-color: @textPrimaryColor;
     color: @errorColor;
-    padding: 5px 10px;
+    padding: 5px 0;
     display: inline-block;
     margin: 0;
     position: absolute;
-    bottom: -5px;
+    bottom: -6px;
     right: 20px;
-    border-radius: 15px;
-    // border: 1px solid @dividerColor;
+    border-bottom: 1px solid @errorColor;
+    border-left: 15px solid @textPrimaryColor;
+    border-right: 15px solid @textPrimaryColor;
+
     &:before {
         content: "";
         display: block;
         position: absolute;
         bottom: -5px;
         left: 20px;
-        border-bottom: 1px solid @dividerColor;
-        border-right: 1px solid @dividerColor;
+        border-bottom: 1px solid @errorColor;
+        border-right: 1px solid @errorColor;
         background-color: @textPrimaryColor;
         width: 7px;
         height: 7px;

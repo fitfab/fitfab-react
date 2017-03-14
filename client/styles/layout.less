@@ -1,3 +1,4 @@
+@import "./base/_var.less";
 @import "./base/_palette.less";
 body {
     font-family: sans-serif;
@@ -29,7 +30,9 @@ h1 {
     left: 0;
     padding: 20px;
     // background: url(http://hdwallpaperia.com/wp-content/uploads/2013/11/White-Background-1024x640.jpg) center no-repeat;
-
+    @media @smartphones {
+        padding: 0;
+    }
 }
 
 .top-navigation {
