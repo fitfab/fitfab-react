@@ -9,6 +9,11 @@ export default React.createClass({
         location: PropTypes.object
     },
 
+    /**
+     * renderBackButton POC for redirect base on the query param passed into
+     * the props location.
+     * @return {[element]}
+     */
     renderBackButton() {
         const { query } = this.props.location;
         return (query && query.prevPage) && (<a className="prev-page" href={query.prevPage}>back</a>)

@@ -1,6 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+/**
+ * At line #15
+ * POC: catching the current location and storing it to later
+ * use it to redirect user to previous page.
+ * @type {String}
+ */
+
 export default React.createClass({
     displayName: 'navigation',
     render() {

@@ -3,9 +3,25 @@
     // display: flex;
     overflow-x: auto;
     box-sizing: border-box;
-
     .prev-page {
         display: block;
+        text-decoration: none;
+        border-radius: 7px;
+        position: relative;
+        margin: 5px 20px;
+        color: @darkPrimaryColor;
+        &:after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 3px;
+            left: -10px;
+            height: 10px;
+            width: 10px;
+            border-top: 1px solid @darkPrimaryColor;
+            border-left: 1px solid @darkPrimaryColor;
+            transform: rotate(-45deg);
+        }
     }
 
     .block {
