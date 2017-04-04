@@ -1,2 +1,8 @@
+# File Systems
 .DS_Store
+
+# Node files
 node_modules
+
+# Configuration files
+config.js

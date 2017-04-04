@@ -11,6 +11,7 @@ import webpackConfig from '../webpack.config.dev';
 
 
 import users from './routes/users';
+import { dbUri } from './config';
 
 /*
  * Mongoose by default sets the auto_reconnect option to true.
@@ -21,9 +22,9 @@ import users from './routes/users';
 const options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } },
                 replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } };
 
-const mongodbUri = 'mongodb://fitfab:mlabPassm3@ds019491.mlab.com:19491/tennis-pool';
+//const mongodbUri = 'mongodb://fitfab:mlabPassm3@ds019491.mlab.com:19491/tennis-pool';
 
-mongoose.connect(mongodbUri, options);
+mongoose.connect(dbUri, options);
 const conn = mongoose.connection;
 
 conn.on('error', console.error.bind(console, 'connection error:'));
