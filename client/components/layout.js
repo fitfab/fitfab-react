@@ -3,7 +3,7 @@ import Navigation from './navigation.js';
 
 export default React.createClass({
 
-    displayName: 'App',
+    displayName: 'layout',
 
     propTypes: {
         children: PropTypes.node

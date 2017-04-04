@@ -1,7 +1,8 @@
 import {
     REQUEST_BEGIN,
     REQUEST_SUCCESS,
-    REQUEST_FAILED
+    REQUEST_FAILED,
+    QUICK_VIEW
 } from './actionTypes.js';
 
 export const quickView = (id) => ({
